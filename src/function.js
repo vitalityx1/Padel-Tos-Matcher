@@ -98,7 +98,7 @@ function UserDiv() {
         onClick={generateRandomTeams}
         className="px-4 py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-700 transition duration-300 mb-4 font-extrabold"
       >
-        <FontAwesomeIcon icon={faUsers} />Genereer Teams
+        <FontAwesomeIcon icon={faUsers} /> Genereer Teams
       </button>
         )}
       {isCached && (
