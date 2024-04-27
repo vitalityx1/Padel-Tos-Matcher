@@ -8,73 +8,75 @@ import {
 
 // UserDiv component
 function UserDiv() {
-  const [playerNames, setPlayerNames] = React.useState(Array(12).fill(''));
-  const [courts, setCourts] = React.useState([]);
-  const [isCached, setIsCached] = React.useState(false);
-  React.useEffect(() => {
-    // Load cached teams from localStorage on component mount
-    const cachedCourts = localStorage.getItem('cachedCourts');
-    if (cachedCourts) {
-      setCourts(JSON.parse(cachedCourts));
+    const [playerNames, setPlayerNames] = React.useState(Array(12).fill(''));
+    const [courts, setCourts] = React.useState([]);
+    const [isCached, setIsCached] = React.useState(false);
+    React.useEffect(() => {
+      // Load cached teams from localStorage on component mount
+      const cachedCourts = localStorage.getItem('cachedCourts');
+      if (cachedCourts) {
+        setCourts(JSON.parse(cachedCourts));
+        setIsCached(true);
+      }
+    }, []);
+    const handlePlayerNameChange = (index, event) => {
+      const newPlayerNames = [...playerNames];
+      newPlayerNames[index] = event.target.value;
+      setPlayerNames(newPlayerNames);
+    };
+    const shuffleArray = (array) => {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    };
+    const shuffleTeams = () => {
+      if (courts.length === 0) {
+        alert('Geen opgeslagen teams om te schudden. Genereer eerst teams.');
+        return;
+      }
+      // Shuffle only the players within the cached teams
+      const players = courts.flatMap(court => [...court.teamA, ...court.teamB]);
+      const shuffledPlayers = shuffleArray(players);
+      const shuffledCourts = [];
+      for (let i = 0; i < shuffledPlayers.length; i += 4) {
+        shuffledCourts.push({
+          court: Math.floor(i / 4) + 1,
+          teamA: [shuffledPlayers[i], shuffledPlayers[i + 1]],
+          teamB: [shuffledPlayers[i + 2], shuffledPlayers[i + 3]],
+        });
+      }
+      setCourts(shuffledCourts);
+      localStorage.setItem('cachedCourts', JSON.stringify(shuffledCourts));
+    };
+    const generateRandomTeams = () => {
+      const filledPlayerNames = playerNames.filter(name => name.trim() !== '');
+      if (filledPlayerNames.length !== 12) {
+        alert('Voer alstublieft 12 spelernamen in om teams te genereren.');
+        return;
+      }
+      const shuffledPlayers = shuffleArray([...filledPlayerNames]);
+      const generatedCourts = [];
+      for (let i = 0; i < shuffledPlayers.length; i += 4) {
+        generatedCourts.push({
+          court: Math.floor(i / 4) + 1,
+          teamA: [shuffledPlayers[i], shuffledPlayers[i + 1]],
+          teamB: [shuffledPlayers[i + 2], shuffledPlayers[i + 3]],
+        });
+      }
+      setCourts(generatedCourts);
       setIsCached(true);
-    }
-  }, []);
-  const handlePlayerNameChange = (index, event) => {
-    const newPlayerNames = [...playerNames];
-    newPlayerNames[index] = event.target.value;
-    setPlayerNames(newPlayerNames);
-  };
-  const shuffleArray = (array) => {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-  };
-  const shuffleTeams = () => {
-    if (courts.length === 0) {
-      alert('No cached teams to shuffle. Please generate teams first.');
-      return;
-    }
-    // Shuffle only the players within the cached teams
-    const players = courts.flatMap(court => [...court.teamA, ...court.teamB]);
-    const shuffledPlayers = shuffleArray(players);
-    const shuffledCourts = [];
-    for (let i = 0; i < shuffledPlayers.length; i += 4) {
-      shuffledCourts.push({
-        court: Math.floor(i / 4) + 1,
-        teamA: [shuffledPlayers[i], shuffledPlayers[i + 1]],
-        teamB: [shuffledPlayers[i + 2], shuffledPlayers[i + 3]],
-      });
-    }
-    setCourts(shuffledCourts);
-    localStorage.setItem('cachedCourts', JSON.stringify(shuffledCourts));
-  };
-  const generateRandomTeams = () => {
-    const filledPlayerNames = playerNames.filter(name => name.trim() !== '');
-    if (filledPlayerNames.length !== 12) {
-      alert('Please enter 12 player names to generate teams.');
-      return;
-    }
-    const shuffledPlayers = shuffleArray([...filledPlayerNames]);
-    const generatedCourts = [];
-    for (let i = 0; i < shuffledPlayers.length; i += 4) {
-      generatedCourts.push({
-        court: Math.floor(i / 4) + 1,
-        teamA: [shuffledPlayers[i], shuffledPlayers[i + 1]],
-        teamB: [shuffledPlayers[i + 2], shuffledPlayers[i + 3]],
-      });
-    }
-    setCourts(generatedCourts);
-    setIsCached(true);
-    localStorage.setItem('cachedCourts', JSON.stringify(generatedCourts));
-  };
-  const wipeCachedResults = () => {
-    localStorage.removeItem('cachedCourts');
-    setCourts([]);
-    setIsCached(false);
-    setPlayerNames(Array(12).fill('')); // Reset player names
-  };
+      localStorage.setItem('cachedCourts', JSON.stringify(generatedCourts));
+    };
+    const wipeCachedResults = () => {
+      if (window.confirm('Weet je zeker dat je de resultaten wilt verwijderen?')) {
+        localStorage.removeItem('cachedCourts');
+        setCourts([]);
+        setIsCached(false);
+        setPlayerNames(Array(12).fill('')); // Reset player names
+      }
+    };
   return (
     
     <div className="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 min-h-screen flex flex-col items-center justify-center pb-20">
