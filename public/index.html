@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Padel Team Matcher</title>
+    <!-- Include Tailwind CSS for styling -->
+    <link href="./output.css" rel="stylesheet">
+    <!-- Include Tailwind CSS for styling online <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet"> -->
+</head>
+<body>
+    <!-- This is where your React app will be rendered -->
+    <div id="root"></div>
+
+    <!-- Include React and ReactDOM libraries -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    
+    <!-- Include Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Your custom JavaScript file, assuming it contains your React component definitions -->
+    <script type="text/babel" src="/src/function.js"></script>
+
+    <script type="text/babel">
+        // Assuming UserDiv is your React component defined in function.js
+        // Make sure your component is correctly defined and exported in function.js
+        ReactDOM.render(<UserDiv />, document.getElementById('root'));
+    </script>
+</body>
+</html>
+
