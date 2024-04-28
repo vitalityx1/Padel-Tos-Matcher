@@ -1,11 +1,12 @@
 import React from "react";
+import { Analytics } from "@vercel/analytics/react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faRedo,
   faUsers,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-
+<Analytics/>
 // UserDiv component
 function UserDiv() {
   const [playerNames, setPlayerNames] = React.useState(Array(12).fill(''));
