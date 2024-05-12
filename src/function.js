@@ -92,7 +92,7 @@
         };
         return (
 
-        <div className="bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 min-h-screen items-center justify-center pb-20 flex">
+        <div className="flex bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 min-h-screen flex-col justify-center pb-20">
         <div className="p-4">
             {!isCached && generationCount < 1 && (
             <div>
@@ -119,7 +119,7 @@
 
 
             {isCached && (
-            <div className="flex-auto">
+            <div className="flex-2">
             <button
                 onClick={wipeResults}
                 className="px-4 py-3 bg-red-500 text-white rounded-lg shadow hover:bg-red-700 transition duration-300 font-extrabold"
@@ -128,9 +128,9 @@
             </button>
             </div>
             )}
-            <div className="flex-auto mt-4 ">
+            <div className="flex-initial w-auto mt-4">
             {allRounds.map((round, roundIndex) => (
-                <div key={roundIndex} className="flex-wrap mb-8 border p-4 rounded shadow-lg bg-white">
+                <div key={roundIndex} className="w-center flex-wrap mb-8 border p-4 rounded shadow-lg bg-white">
                 <h2 className="text-xl font-bold mb-2">Ronde {roundIndex + 1}</h2>
                 <div className="space-y-4">
                     {round.map((court, index) => (
@@ -138,12 +138,12 @@
                         <h3 className="text-lg font-bold mb-2">Baan {court.court}</h3>
                         <div className="grid grid-cols-2 gap-4">
                         <div>
-                            <h4 className="text-md font-bold mb-1">Team A</h4>
+                            <h4 className="text-lg font-bold mb-1">Team A</h4>
                             <p className="text-base">{court.teamA[0]}</p>
                             <p className="text-base">{court.teamA[1]}</p>
                         </div>
                         <div>
-                            <h4 className="text-md font-bold mb-1">Team B</h4>
+                            <h4 className="text-lg font-bold mb-1">Team B</h4>
                             <p className="text-base">{court.teamB[0]}</p>
                             <p className="text-base">{court.teamB[1]}</p>
                         </div>

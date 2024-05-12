@@ -7,7 +7,8 @@ module.exports = {
       fontFamily: {
         sans: ['Roboto','sans'],
       },
-      extend: {},
+      extend: {
+      },
     },
     plugins: [require("tailwindcss-animate"),],
   }
