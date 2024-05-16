@@ -1,5 +1,3 @@
-Here is a proper README for the [Padel-Tos-Matcher GitHub repository](https://github.com/vitalityx1/Padel-Tos-Matcher):
-
 ---
 
 # Padel-Tos Matcher
@@ -8,9 +6,9 @@ Padel-Tos Matcher is a web application designed to help padel players find and m
 
 ## Features
 
-- **Player Matching**: Connect with other padel players based on your skill level and preferences.
-- **Game Scheduling**: Organize and schedule games seamlessly.
-- **User Profiles**: Create and manage player profiles with details like skill level, availability, and more.
+- **Player Matching**: Connect with other padel players based on your skill level and preferences. (Private for now)
+- **Game Scheduling**: Organize and schedule games seamlessly. (Private for now)
+- **User Profiles**: Create and manage player profiles with details like skill level, availability, and more. (Private for now)
 
 ## Getting Started
 
@@ -72,7 +70,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 
 For any inquiries or support, please contact [VitalityX1](https://github.com/vitalityx1).
-
----
-
-Feel free to customize this README further to suit your project's needs.
